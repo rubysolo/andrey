@@ -1,3 +1,5 @@
+require 'andrey/language/english'
+
 module Andrey
   class Word
     def initialize(language=Language::English)
@@ -34,8 +36,8 @@ module Andrey
       symbols.sample
     end
 
-    def self.generate(length=8)
-      new.tap do |word|
+    def self.generate(length=8, language=Language::English)
+      new(language).tap do |word|
         while word.length < length
           word.add_letter
         end

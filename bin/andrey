@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+library_path = File.dirname(__FILE__) + '/../lib'
+$LOAD_PATH.unshift(library_path) unless $LOAD_PATH.include?(library_path)
+
+require 'andrey/command'
+
+command = ARGV.shift
+Andrey::Command[command].run(*ARGV)
+
