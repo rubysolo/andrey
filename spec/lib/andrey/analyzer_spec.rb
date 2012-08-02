@@ -17,4 +17,10 @@ describe Andrey::Analyzer do
     freq_c = result[2]
     freq_c.must_equal zeros
   end
+
+  it 'reads corpus text from a file' do
+    IO.stubs(:read).returns("abc")
+    subject.expects(:analyze).with("abc")
+    subject.read("filename.txt")
+  end
 end

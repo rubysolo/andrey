@@ -1,5 +1,9 @@
 module Andrey
   class Analyzer
+    def read(filename)
+      analyze(IO.read(filename))
+    end
+
     def analyze(text)
       symbols = ('a'..'z').to_a
       zeros = [].fill(0,0,26)
