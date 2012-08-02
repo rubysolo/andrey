@@ -13,8 +13,10 @@ module Andrey
       def run(*args)
         probability_map = Andrey::Analyzer.new.read(args.first)
         puts "["
-        probability_map.each do |row|
-          puts "[#{ row.join(',') }]"
+        probability_map.each_with_index do |row, index|
+          print "[#{ row.join(',') }]"
+          print "," if index < 25
+          puts
         end
         puts "]"
       end
