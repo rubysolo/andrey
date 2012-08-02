@@ -24,10 +24,10 @@ LIKE ENGLISH?)  Make a new language file, and generate the probability map via:
 
     andrey analyze /path/to/klingon-opera.txt
 
-## Why 'Andrey'
+## Why 'Andrey'?
 
 For [Andrey Markov](http://en.wikipedia.org/wiki/Andrey_Markov).  And also
-because Andrey is "rand()" in pig-latin.
+because And-rey is "rand()" in pig-latin.
 
 ## Contributing
 
