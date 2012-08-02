@@ -4,9 +4,9 @@ require File.expand_path('../lib/andrey/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Solomon White"]
   gem.email         = ["rubysolo@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{andrey}
+  gem.summary       = %q{generate pseudopronounceable random words based on bigram freqency distribution}
+  gem.homepage      = "https://github.com/rubysolo/andrey"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
