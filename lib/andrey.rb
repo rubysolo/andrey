@@ -1,8 +1,13 @@
+require "andrey/analyzer"
 require "andrey/version"
-require "andrey/command"
+require "andrey/word"
 
 module Andrey
-  def self.method_missing(meth, *args)
-    Andrey::Command[meth.to_s].run(*args)
+  def self.analyze(*args)
+    Analyzer.analyze(*args)
+  end
+
+  def self.generate(*args)
+    Word.generate(*args)
   end
 end
