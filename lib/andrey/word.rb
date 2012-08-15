@@ -1,3 +1,4 @@
+require 'andrey/language/american_names'
 require 'andrey/language/english'
 
 module Andrey
