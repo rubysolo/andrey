@@ -5,7 +5,13 @@ module Andrey
   class Command
     class Generate
       def run(*args)
-        puts Andrey::Word.generate(*args)
+        # turn cli stuffs into ruby stuffs
+        options = []
+        args.each_cons(2) do |(flag, value)|
+          options << value.to_i if flag == '-l'
+        end
+
+        puts Andrey::Word.generate(*options)
       end
     end
 

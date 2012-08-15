@@ -9,4 +9,11 @@ describe Andrey::Command do
     command = described_class['generate']
     command.run
   end
+
+  it 'passes arguments to the subcommand' do
+    Andrey::Command::Generate.any_instance.stubs(:puts)
+    Andrey::Word.expects(:generate).with(10)
+    command = described_class['generate']
+    command.run('-l', '10')
+  end
 end
