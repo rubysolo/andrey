@@ -10,10 +10,17 @@ describe Andrey::Command do
     command.run
   end
 
-  it 'passes arguments to the subcommand' do
+  it 'passes length args to the subcommand' do
     Andrey::Command::Generate.any_instance.stubs(:puts)
-    Andrey::Word.expects(:generate).with(10)
+    Andrey::Word.expects(:generate).with(length: 10)
     command = described_class['generate']
     command.run('-l', '10')
+  end
+
+  it 'passes probability map args to the subcommand' do
+    Andrey::Command::Generate.any_instance.stubs(:puts)
+    Andrey::Word.expects(:generate).with(language: Andrey::Language::AmericanNames)
+    command = described_class['generate']
+    command.run('-m', 'lib/andrey/language/american_names.rb')
   end
 end

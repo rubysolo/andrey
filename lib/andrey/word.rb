@@ -37,9 +37,10 @@ module Andrey
       symbols.sample
     end
 
-    def self.generate(length=8, language=Language::English)
-      new(language).tap do |word|
-        while word.length < length
+    def self.generate(options={})
+      options[:length] ||= 8
+      new(options[:language] || Language::English).tap do |word|
+        while word.length < options[:length]
           word.add_letter
         end
       end

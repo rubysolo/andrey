@@ -6,12 +6,25 @@ module Andrey
     class Generate
       def run(*args)
         # turn cli stuffs into ruby stuffs
-        options = []
+        options = {}
         args.each_cons(2) do |(flag, value)|
-          options << value.to_i if flag == '-l'
+          options[:length] = value.to_i if flag == '-l'
+          options[:language] = language_class(value) if flag == '-m'
         end
 
-        puts Andrey::Word.generate(*options)
+        puts Andrey::Word.generate(options)
+      end
+
+      def language_class(filename)
+        absolute = if filename.match(%r{^/})
+          filename
+        else
+          File.expand_path(filename, Dir.pwd)
+        end
+
+        require absolute
+        classname = File.basename(filename, '.rb').split('_').map(&:capitalize).join
+        Andrey::Language.const_get(classname)
       end
     end
 
