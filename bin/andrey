@@ -6,5 +6,14 @@ $LOAD_PATH.unshift(library_path) unless $LOAD_PATH.include?(library_path)
 require 'andrey/command'
 
 command = ARGV.shift
-Andrey::Command[command].run(*ARGV)
 
+unless ["analyze", "generate"].include?(command)
+  puts <<-eof
+usage: 
+    andrey generate          #=> Generate a new word based on current bigram frequency
+    andrey analyze filename  #=> Read in the specified text file and calculate bigram frequency
+eof
+  exit 1
+end
+
+Andrey::Command[command].run(*ARGV)
