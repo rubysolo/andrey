@@ -1,10 +1,10 @@
 module Andrey
   class Analyzer
-    def self.analyze_file(filename)
-      analyze_text IO.read(filename)
+    def self.analyze_file(filename, include_spaces=false)
+      analyze_text(IO.read(filename), include_spaces)
     end
 
-    def self.analyze_text(text)
+    def self.analyze_text(text, include_spaces=false)
       pmap = {}
 
       text.downcase.chars.each_cons(2) do |from, to|
@@ -13,7 +13,8 @@ module Andrey
         pmap[from][to] += 1
       end
 
-      symbols = pmap.keys.sort.select {|s| s.match(/\w/) }
+      regex   = symbols_regex(include_spaces)
+      symbols = pmap.keys.sort.select {|s| s.match(regex) }
 
       map = symbols.inject([]) do |m, symbol|
         probabilities = pmap[symbol]
@@ -21,6 +22,10 @@ module Andrey
       end
 
       [symbols, map]
+    end
+
+    def self.symbols_regex(include_spaces)
+      include_spaces ? Regexp.new(/[a-z ]/) : Regexp.new(/[a-z]/)
     end
   end
 end
