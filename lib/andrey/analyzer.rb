@@ -1,32 +1,26 @@
 module Andrey
   class Analyzer
     def self.analyze_file(filename)
-      new.read(filename)
+      analyze_text IO.read(filename)
     end
 
     def self.analyze_text(text)
-      new.analyze(text)
-    end
+      pmap = {}
 
-    def read(filename)
-      analyze(IO.read(filename))
-    end
-
-    def analyze(text)
-      symbols = ('a'..'z').to_a
-      zeros = [].fill(0,0,26)
-      map   = (0..25).to_a.map { |x| zeros.dup }
-
-      text.downcase.split(/[^a-z]+/).each do |word|
-        word.split(//).each_cons(2) do |from, to|
-          col = symbols.index(from)
-          row = symbols.index(to)
-
-          map[col][row] += 1
-        end
+      text.downcase.chars.each_cons(2) do |from, to|
+        pmap[from] ||= Hash.new(0)
+        pmap[to] ||= Hash.new(0)
+        pmap[from][to] += 1
       end
 
-      map
+      symbols = pmap.keys.sort.select {|s| s.match(/\w/) }
+
+      map = symbols.inject([]) do |m, symbol|
+        probabilities = pmap[symbol]
+        m << symbols.map { |s| probabilities[s] }
+      end
+
+      [symbols, map]
     end
   end
 end

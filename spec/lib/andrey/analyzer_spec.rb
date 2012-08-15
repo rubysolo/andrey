@@ -2,25 +2,23 @@ require 'spec_helper'
 require 'andrey/analyzer'
 
 describe Andrey::Analyzer do
-  let(:subject) { Andrey::Analyzer.new }
+  let(:subject) { Andrey::Analyzer }
 
   it 'counts occurrences of bigrams in source text' do
-    zeros  = (0..25).map { |x| 0 }
-    result = subject.analyze("abc")
+    symbols, map = subject.analyze_text("abc")
 
-    freq_a = result[0]
-    freq_a.must_equal zeros.dup.fill(1,1,1)
+    freq_a = map[0]
+    freq_a.must_equal [0, 1, 0]
 
-    freq_b = result[1]
-    freq_b.must_equal zeros.dup.fill(1,2,1)
+    freq_b = map[1]
+    freq_b.must_equal [0, 0, 1]
 
-    freq_c = result[2]
-    freq_c.must_equal zeros
+    freq_c = map[2]
+    freq_c.must_equal [0, 0, 0]
   end
 
   it 'reads corpus text from a file' do
     IO.stubs(:read).returns("abc")
-    subject.expects(:analyze).with("abc")
-    subject.read("filename.txt")
+    subject.analyze_file("filename.txt")
   end
 end

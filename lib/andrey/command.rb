@@ -31,7 +31,9 @@ module Andrey
 
     class Analyze
       def run(*args)
-        probability_map = Andrey::Analyzer.new.read(args.first)
+        symbols, probability_map = Andrey::Analyzer.analyze_file(args.first)
+        puts "[#{ symbols.map{|s| "'#{ s }'" }.join(',') }]"
+
         puts "["
         probability_map.each_with_index do |row, index|
           print "[#{ row.join(',') }]"

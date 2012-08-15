@@ -3,8 +3,12 @@ require "andrey/version"
 require "andrey/word"
 
 module Andrey
-  def self.analyze(*args)
-    Analyzer.analyze(*args)
+  def self.analyze_file(*args)
+    Analyzer.analyze_file(*args)
+  end
+
+  def self.analyze_text(*args)
+    Analyzer.analyze_text(*args)
   end
 
   def self.generate(*args)
