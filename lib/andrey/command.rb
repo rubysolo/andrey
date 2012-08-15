@@ -10,6 +10,7 @@ module Andrey
         args.each_cons(2) do |(flag, value)|
           options[:length] = value.to_i if flag == '-l'
           options[:language] = language_class(value) if flag == '-m'
+          options[:corpus] = value if flag == '-c'
         end
 
         puts Andrey::Word.generate(options)

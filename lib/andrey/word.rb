@@ -39,6 +39,12 @@ module Andrey
 
     def self.generate(options={})
       options[:length] ||= 8
+
+      if options[:corpus]
+        symbols, map = Analyzer.analyze_file(options[:corpus])
+        options[:language] = Language::Dynamic.new(symbols, map)
+      end
+
       new(options[:language] || Language::English).tap do |word|
         while word.length < options[:length]
           word.add_letter

@@ -1,5 +1,13 @@
 module Andrey
   class Analyzer
+    def self.analyze_file(filename)
+      new.read(filename)
+    end
+
+    def self.analyze_text(text)
+      new.analyze(text)
+    end
+
     def read(filename)
       analyze(IO.read(filename))
     end
