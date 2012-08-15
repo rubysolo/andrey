@@ -5,7 +5,7 @@ module Andrey
   class Command
     class Generate
       def run(*args)
-        puts Andrey::Word.generate
+        puts Andrey::Word.generate(*args)
       end
     end
 
