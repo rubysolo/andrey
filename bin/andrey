@@ -9,7 +9,7 @@ command = ARGV.shift
 
 unless ["analyze", "generate"].include?(command)
   puts <<-eof
-usage: 
+usage:
     andrey generate          #=> Generate a new word based on current bigram frequency
     andrey analyze filename  #=> Read in the specified text file and calculate bigram frequency
 eof
