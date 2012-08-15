@@ -1,5 +1,8 @@
 require "andrey/version"
+require "andrey/command"
 
 module Andrey
-  # Your code goes here...
+  def self.method_missing(meth, *args)
+    Andrey::Command[meth.to_s].run(*args)
+  end
 end
