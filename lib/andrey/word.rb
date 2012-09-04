@@ -1,4 +1,5 @@
 require 'andrey/language/american_names'
+require 'andrey/language/dynamic'
 require 'andrey/language/english'
 
 module Andrey
@@ -37,9 +38,16 @@ module Andrey
       symbols.sample
     end
 
-    def self.generate(length=8, language=Language::English)
-      new(language).tap do |word|
-        while word.length < length
+    def self.generate(options={})
+      options[:length] ||= 8
+
+      if options[:corpus]
+        symbols, map = Analyzer.analyze_file(options[:corpus])
+        options[:language] = Language::Dynamic.new(symbols, map)
+      end
+
+      new(options[:language] || Language::English).tap do |word|
+        while word.length < options[:length]
           word.add_letter
         end
       end
