@@ -25,7 +25,7 @@ module Andrey
       index = symbols.index(letter)
 
       probabilities = probability_map[index]
-      pointer = rand(probabilities.inject(:+))
+      pointer = rand
       sum = 0
 
       probabilities.each_with_index do |p, index|

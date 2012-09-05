@@ -17,8 +17,9 @@ module Andrey
       symbols = pmap.keys.sort.select {|s| s.match(regex) }
 
       map = symbols.inject([]) do |m, symbol|
-        probabilities = pmap[symbol]
-        m << symbols.map { |s| probabilities[s] }
+        occurrences = pmap[symbol]
+        sum = occurrences.values.inject(:+) || 0
+        m << symbols.map { |s| sum == 0 ? 0 : (occurrences[s] / sum.to_f) }
       end
 
       [symbols, map]
