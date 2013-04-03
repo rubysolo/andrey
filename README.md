@@ -1,5 +1,9 @@
 # Andrey
 
+[![Gem Version](https://badge.fury.io/rb/andrey.png)](http://badge.fury.io/rb/andrey)
+[![Build Status](https://travis-ci.org/rubysolo/andrey.png?branch=master)](https://travis-ci.org/rubysolo/andrey)
+[![Code Climate](https://codeclimate.com/github/rubysolo/andrey.png)](https://codeclimate.com/github/rubysolo/andrey)
+
 Generate pseudopronounceable random words based on bigram frequency
 distributions
 
