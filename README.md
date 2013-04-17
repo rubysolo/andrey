@@ -20,7 +20,7 @@ From the command line:
 
 From your code:
 
-    Andrey::Word.generate(5)
+    Andrey::Word.generate(length: 5)
     # => 'gatiz'
 
 Want to customize the Markov model to make the words sound different?  (Y U NO
